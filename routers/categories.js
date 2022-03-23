@@ -12,11 +12,12 @@ router.get("/", async (req, res) => {
   }
 });
 
+// wrong
 router.get("/:id", async (req, res) => {
   try {
     const categoriesById = req.params.id;
     const categoryById = await Categories.findAll({
-      include: [{ mode: Categories, where: { categoriesById }, right: true }],
+      include: [{ model: Categories, where: { categoriesById }, right: true }],
     });
     if (!categoryById) {
       res.status(404).send("Product not found");
